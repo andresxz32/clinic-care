@@ -1,0 +1,75 @@
+<section class="h-full bg-gray-50 dark:bg-gray-900">
+
+  <div class="h-full flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <logo class="flex my-4 w-full justify-center"/>
+        <pip-title title="Complete registration"/>
+        <p class="text-sm m-0 font-normal text-gray-500">
+          Start your website in seconds. Already have an account? Login here.
+        </p>
+
+        <mat-stepper role="tablist" linear labelPosition="bottom" class="mt-0" #stepper>
+
+          <!--          Personal information form-->
+          <mat-step role="presentation" [completed]="personalInformationForm.valid"
+                    [stepControl]="personalInformationForm">
+
+            <ng-template matStepLabel>
+              <p class="text-center whitespace-normal">Personal information</p>
+            </ng-template>
+
+            <personal-information-form [personalInformationForm]="personalInformationForm"/>
+
+            <div class="w-full flex justify-between gap-2 !mt-0">
+              <pip-stepper-button [disabled]="personalInformationForm.invalid" matStepperNext class="w-full"
+                                  color="primary" text="Next" type="button"/>
+            </div>
+          </mat-step>
+
+          <!--          Medical center form-->
+          <mat-step role="doc-cover" [completed]="medicalCenterForm.valid" [stepControl]="medicalCenterForm">
+
+            <ng-template matStepLabel>
+              <p class="text-center whitespace-normal">Medical Center</p>
+            </ng-template>
+
+            <medical-center-form [medicalCenterForm]="medicalCenterForm"/>
+
+            <div class="w-full flex justify-between gap-2 !mt-0">
+              <pip-stepper-button matStepperPrevious class="w-full" color="secondary" text="Back" type="button"/>
+              <pip-stepper-button [disabled]="medicalCenterForm.invalid" matStepperNext class="w-full" color="primary"
+                                  text="Next" type="button"/>
+            </div>
+
+          </mat-step>
+
+          <!--          Account details form -->
+          <mat-step role="contentinfo" [completed]="accountDetailsForm.valid" [stepControl]="accountDetailsForm">
+            <ng-template matStepLabel>
+              <p class="text-center whitespace-normal">Account details</p>
+            </ng-template>
+
+            <account-details-form [accountDetailsForm]="accountDetailsForm"/>
+
+            <div class="w-full flex justify-between gap-2 !mt-0">
+              <pip-stepper-button matStepperPrevious class="w-full" color="secondary" text="Back" type="button"/>
+              <pip-stepper-button [disabled]="accountDetailsForm.invalid" matStepperNext class="w-full" color="primary"
+                                  text="Start 🚀" type="button"/>
+            </div>
+
+          </mat-step>
+
+        </mat-stepper>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

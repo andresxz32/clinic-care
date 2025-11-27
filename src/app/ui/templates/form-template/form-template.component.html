@@ -1,0 +1,32 @@
+<form [formGroup]="templateFormGroup" class="grid grid-cols-12 grid-rows-3 gap-2 p-2">
+
+  @for (control of form(); track control.name) {
+    @switch (control.field) {
+      @case ('text') {
+        <pip-input class="col-span-6" [errors]="[]" [controlName]="control.name" [label]="control.label" [type]="control.type"/>
+      }
+      @case ('date') {
+        Case B.
+      }
+      @case ('webcam') {
+        Case B.
+      }
+      @case ('signature') {
+        Case B.
+      }
+      @case ('select') {
+        Case B.
+      }
+      @case ('selectSearch') {
+        Case B.
+      }
+      @default {
+        Default case.
+      }
+    }
+
+
+  }
+
+  <!-- </section> -->
+</form>

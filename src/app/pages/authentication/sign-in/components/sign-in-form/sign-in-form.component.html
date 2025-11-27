@@ -1,0 +1,13 @@
+<form class="space-y-4 md:space-y-6 py-2" [formGroup]="signInForm" (ngSubmit)="signIn();">
+  <pip-input [errors]="emailErrors()" controlName="email" label="Your email" type="email"/>
+  <pip-input [errors]="passwordErrors()" controlName="password" suffixButton label="Password" [type]="showPassword() ? 'text' : 'password'"
+             placeholder="••••••••"
+             [suffixIcon]="showPassword() ? 'visibility_off' : 'visibility'"
+             (onSuffixClick)="showPassword.set(!showPassword())"/>
+
+  <remember-me/>
+
+  <pip-button (click)="signIn()" text="Sign in"/>
+
+  <sign-up-action/>
+</form>

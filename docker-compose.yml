@@ -1,0 +1,30 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=dev
+    container_name: angular_dev
+
+  qa:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=qa
+    container_name: angular_qa
+
+  prod:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    container_name: angular_prod

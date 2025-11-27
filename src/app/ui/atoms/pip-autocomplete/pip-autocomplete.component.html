@@ -1,0 +1,21 @@
+<mat-form-field class="w-full" appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+  <input [readonly]="readonly()" [formControl]="control" matInput type="text" [placeholder]="placeholder()"
+         [matAutocomplete]="auto">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+    @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option">{{ option?.label }}</mat-option>
+    }
+  </mat-autocomplete>
+
+  <mat-error>{{ control.value | controlErrorMessage:errors():control }}</mat-error>
+
+  @if (prefixButton()) {
+    <pip-icon-button matPrefix (onClick)="onSuffixClick.emit()" [icon]="prefixIcon()"/>
+  }
+
+  @if (clearButton() && this.control.value) {
+    <pip-icon-button matSuffix (onClick)="control.setValue(null)" icon="clear"/>
+  }
+
+</mat-form-field>

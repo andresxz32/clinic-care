@@ -1,0 +1,29 @@
+<form class="space-y-4 md:space-y-6 py-2 " [formGroup]="accountDetailsForm()">
+  <section class="grid gap-2">
+    <pip-input controlName="emailAddress" [errors]="emailErrors()" label="What is your email address?"
+               type="text"/>
+    <pip-input [errors]="passwordErrors()" controlName="password" suffixButton label="Password"
+               [type]="showPassword() ? 'text' : 'password'"
+               placeholder="••••••••"
+               [suffixIcon]="showPassword() ? 'visibility_off' : 'visibility'"
+               (onSuffixClick)="showPassword.set(!showPassword())"/>
+
+
+    <pip-input [errors]="confirmPasswordErrors()" controlName="confirmPassword" suffixButton label="Confirm password"
+               [type]="showConfirmPassword() ? 'text' : 'password'"
+               placeholder="••••••••"
+               [suffixIcon]="showConfirmPassword() ? 'visibility_off' : 'visibility'"
+               (onSuffixClick)="showConfirmPassword.set(!showConfirmPassword())"/>
+
+    <pip-password-strength #passwordComponent
+                           (onStrengthChanged)="onStrengthChanged($event)"
+                           [password]="accountDetailsForm().get('password')?.value"/>
+
+    <pip-password-strength-info
+      [passwordComponent]="passwordComponent">
+    </pip-password-strength-info>
+
+  </section>
+
+
+</form>

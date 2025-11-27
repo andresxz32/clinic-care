@@ -1,0 +1,27 @@
+<user-button [matMenuTriggerFor]="menu"
+                 imageUrl="https://flowbite.com/docs/images/people/profile-picture-5.jpg"/>
+<mat-menu class="w-[232px]" #menu="matMenu">
+  <button mat-menu-item>
+                <span class="flex flex-col leading-none">
+                  <span>Signed in as</span>
+                  <span class="mt-1.5 text-sm font-semibold">{{ 'hughes.brian@clinic-care.com' }}</span>
+                </span>
+  </button>
+  <mat-divider class="my-2"></mat-divider>
+  <button [routerLink]="['/user/profile']" mat-menu-item>
+    <mat-icon class="w-5 h-5 !text-gray-500">account_circle</mat-icon>
+    <span class="text-gray-700">Profile</span>
+  </button>
+
+  <button [routerLink]="['/team/settings']" mat-menu-item>
+    <mat-icon class="w-5 h-5 !text-gray-500">settings</mat-icon>
+    <span class="text-gray-700">Settings</span>
+  </button>
+
+  <mat-divider class="my-2"></mat-divider>
+  <button  mat-menu-item>
+    <mat-icon class="w-5 h-5 !text-gray-500">logout</mat-icon>
+    <span class="text-gray-700">Logout</span>
+  </button>
+
+</mat-menu>

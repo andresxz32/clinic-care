@@ -1,0 +1,10 @@
+<form class="space-y-4 md:space-y-6 py-2 " [formGroup]="personalInformationForm()">
+  <section class="grid gap-2">
+    <pip-input [errors]="firstNameErrors()" controlName="firstName" label="What is your first name?"/>
+    <pip-input controlName="secondName" label="What is your second name?"/>
+    <pip-input [errors]="lastNameErrors()" controlName="lastName" label="What is your last name?"/>
+    <pip-input [errors]="secondLastNameErrors()" controlName="secondLastName" label="What is your second last name?"/>
+    <pip-input-phone [preferredCountry]="preferredCountry()" [errors]="phoneNumberErrors()" controlName="phoneNumber"
+                     label="What is you phone number?"/>
+  </section>
+</form>

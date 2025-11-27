@@ -1,0 +1,141 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use './_theme-colors' as palettes;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: palettes.$primary-palette,
+      tertiary: palettes.$tertiary-palette
+    ),
+    density: -3,
+  ));
+
+  @include mat.form-field-overrides((
+    outlined-outline-color: rgba(226, 232, 240, 1),
+    outlined-hover-outline-color: rgba(226, 232, 240, 1),
+    container-height: 40px,
+  ));
+
+  @include mat.menu-overrides((
+    container-color: #FFFF,
+    item-label-text-color: #1e293b
+  ));
+
+  @include mat.divider-overrides((
+    color: #e2e8f0,
+  ));
+
+  @include mat.select-overrides((
+    panel-background-color: #ffff
+  ));
+
+  @include mat.autocomplete-overrides((
+    background-color: #ffff
+  ));
+  @include mat.stepper-overrides((
+    container-color: #ffff
+  ));
+
+  @include mat.card-overrides((
+    elevated-container-color: #FFFF,
+  ));
+
+  @include mat.paginator-overrides((
+    container-background-color: #f8fafc,
+    container-size: 56px,
+    container-text-size: 14px !important, // Adjust the font size as desired
+  ));
+
+  @include mat.snack-bar-overrides((
+    container-color: transparent,
+  ));
+
+  .custom-mat-warn {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #f7eb45,
+      //track-color: #ece7a1,
+    ));
+    @include mat.icon-overrides((
+      color:#f7eb45,
+    ));
+  }
+
+  .custom-mat-error {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #f44336,
+      //track-color: #ffcdd2,
+    ));
+    @include mat.icon-overrides((
+      color:#f44336,
+    ));
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0 !important;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.bg-card {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.text-secondary {
+  --tw-text-opacity: 1;
+  color: rgba(100, 116, 139, 1);
+}
+
+div.mat-mdc-select-panel {
+  padding: 0 !important;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+.custom-responsive-grid {
+  grid-template-columns: 48px auto 40px;
+
+  @screen sm {
+    grid-template-columns: 48px auto 112px 72px;
+  }
+
+  @screen md {
+    grid-template-columns: 48px 112px auto 112px 72px;
+  }
+
+  @screen lg {
+    grid-template-columns: 48px 112px auto 112px 96px 96px 72px;
+  }
+}
+
+
+
+
+
+
+

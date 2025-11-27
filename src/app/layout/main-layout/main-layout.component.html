@@ -1,0 +1,24 @@
+<navbar (onClickMenu)="isOpen.set(!isOpen())"/>
+
+
+
+@if (isOpen()) {
+  <sidebar @slide [isOpen]="isOpen()" [isPhoneMode]="isPhoneMode()"/>
+}
+
+
+<section class="pt-4 h-full back bg-tertiary" [ngClass]="{'sm:ml-64': isOpen()}">
+  <div class="mt-14">
+    <main class="flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+      <router-outlet/>
+    </main>
+  </div>
+</section>
+
+
+
+
+
+
+
+

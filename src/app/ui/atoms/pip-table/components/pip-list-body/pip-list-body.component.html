@@ -1,0 +1,57 @@
+@if (rows()) {
+  @for (column of columns(); track column.id; let index = $index) {
+    <div class="custom-responsive-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+      @for (row of rows(); track row.column) {
+        @if (row.type == 'text') {
+          <div [class]="row.class">
+            {{ column[row.column] }}
+          </div>
+        }
+
+        @if (row.type == 'image') {
+          <div [class]="row.class">
+          </div>
+        }
+
+        @if (row.type == 'status') {
+          <div [class]="row.class">
+            @if (column[row.column]) {
+              <mat-icon
+                class="text-green-400 icon-size-5" matTooltip="Active"
+              >check
+              </mat-icon>
+            } @else {
+              <mat-icon
+                class="text-gray-400 icon-size-5" matTooltip="Deactivate"
+              >close
+              </mat-icon>
+            }
+          </div>
+        }
+
+        @if (row.type == 'details') {
+          <!-- Details button -->
+          <pip-button-arrow tooltipText="Show details" (onClick)="showServiceDetail(column);" [isOpen]="selectedRow && selectedRow == column.id"/>
+        }
+      }
+    </div>
+    <div class="grid">
+      @if (selectedRow == column.id) {
+        <ng-content></ng-content>
+      }
+    </div>
+  }
+
+
+
+
+  <!-- Image -->
+
+
+    <!-- Price -->
+    <!--      <div class="">-->
+    <!--        {{ row.price | currency:'USD':'symbol':'1.2-2' }}-->
+    <!--      </div>-->
+
+
+}

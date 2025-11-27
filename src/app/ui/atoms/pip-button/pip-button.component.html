@@ -1,0 +1,29 @@
+@if (color() === 'primary') {
+  <button preventDoubleClick (throttledClick)="onClick()" [throttleTime]="200" [type]="type()"
+          class="w-full my-4 !h-[42px]"
+          mat-flat-button>
+    @if (matPrefix()) {
+      <mat-icon>{{ matPrefix() }}</mat-icon>
+    }
+    {{ text() }}
+    @if (matSuffix()) {
+      <mat-icon>{{ matSuffix() }}</mat-icon>
+    }
+  </button>
+}
+
+@if (color() === 'secondary') {
+  <button preventDoubleClick (throttledClick)="onClick()" [throttleTime]="200" [type]="type()"
+          class="w-full my-4 !h-[46px]"
+          mat-raised-button>{{ text() }}
+    @if (matPrefix()) {
+      <mat-icon>{{ matPrefix() }}</mat-icon>
+    }
+    {{ text() }}
+    @if (matSuffix()) {
+      <mat-icon>{{ matSuffix() }}</mat-icon>
+    }
+  </button>
+}
+
+

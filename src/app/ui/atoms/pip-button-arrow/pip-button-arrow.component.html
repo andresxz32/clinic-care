@@ -1,0 +1,5 @@
+<button preventDoubleClick (throttledClick)="onClick.emit();" [throttleTime]="200">
+  <mat-icon [@toggleArrowAnimation]="isOpen() ? 'open' : 'closed'" [matTooltip]="tooltipText()">
+    keyboard_arrow_down
+  </mat-icon>
+</button>

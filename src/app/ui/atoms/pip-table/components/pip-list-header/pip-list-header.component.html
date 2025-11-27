@@ -1,0 +1,19 @@
+<div
+  class="custom-responsive-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+  matSort
+  matSortDisableClear>
+  @for (header of headers(); track header.id) {
+    @if (header.name) {
+      <div [class]="header.class" [mat-sort-header]="header.name">
+        {{ header?.title }}
+      </div>
+    } @else {
+      <div [class]="header.class">
+        {{ header?.title }}
+      </div>
+    }
+  }
+</div>
+
+
+

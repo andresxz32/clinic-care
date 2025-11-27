@@ -1,0 +1,15 @@
+<mat-form-field class="w-full border-color" appearance="outline">
+  <mat-label>{{label()}}</mat-label>
+  <mat-select [formControl]="control" [multiple]="multiple()" canSelectNullableOptions>
+    <mat-option [value]="null">None</mat-option>
+    @for (option of options(); track option.value) {
+      <mat-option [value]="option?.value">{{ option?.label }}</mat-option>
+    }
+  </mat-select>
+  @if (prefixButton()) {
+    <pip-icon-button matPrefix (onClick)="onSuffixClick.emit()" [icon]="prefixIcon()"/>
+  }
+
+  <mat-error>{{ control.value | controlErrorMessage:errors():control }}</mat-error>
+
+</mat-form-field>

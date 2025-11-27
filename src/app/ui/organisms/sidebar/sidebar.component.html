@@ -1,0 +1,58 @@
+<aside
+  class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform {{isOpen() ? 'transform-none' : '-translate-x-full'}} bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+  aria-label="Sidebar">
+  <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+    <ul class="space-y-2 font-medium">
+      @for (menu of menus(); track menu.id) {
+
+        @if (menu.subMenus) {
+          <li>
+            <button (click)="subMenu(menu.id)"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full">
+              <div class="flex justify-start">
+                <mat-icon matPrefix class="w-5 h-5 text-gray-500">{{ menu?.icon }}</mat-icon>
+              </div>
+
+              <span class="ms-3">{{ menu?.name }}</span>
+
+              <div class="flex w-full justify-end">
+                <mat-icon [@toggleArrowAnimation]="subMenuActive() == menu?.id ? 'open' : 'closed'">
+                  keyboard_arrow_down
+                </mat-icon>
+              </div>
+            </button>
+          </li>
+          @if (subMenuActive() == menu?.id) {
+            <div @slideIn>
+              <ul class="space-y-2 ml-4 p-2">
+                @for (subMenu of menu.subMenus; track subMenu.id) {
+                  <li>
+                    <a [routerLink]="subMenu?.url" routerLinkActive="bg-gray-100"
+                       class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                      <mat-icon class="w-5 h-5 text-gray-500">{{ subMenu?.icon }}</mat-icon>
+                      <span class="ms-3">{{ subMenu?.name }}</span>
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
+
+          }
+
+        } @else {
+          <li>
+            <a [routerLink]="menu?.url" routerLinkActive="bg-gray-100"
+               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <mat-icon matPrefix class="w-5 h-5 text-gray-500">{{ menu?.icon }}</mat-icon>
+              <span class="ms-3">{{ menu?.name }}</span>
+            </a>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</aside>
+
+@if (isOpen() && isPhoneMode()) {
+  <pip-background-dark/>
+}

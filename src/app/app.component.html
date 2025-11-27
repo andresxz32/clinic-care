@@ -1,0 +1,11 @@
+<router-outlet/>
+
+@if (!env()) {
+  <div class="fixed right-0 bottom-0">
+    {{ envName() }}
+  </div>
+}
+<div class="fixed bottom-0">
+  {{ version() }}
+</div>
+

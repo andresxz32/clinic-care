@@ -1,0 +1,54 @@
+<form [formGroup]="phone">
+  <div class="w-full h-0" cdkOverlayOrigin #trigger="cdkOverlayOrigin"></div>
+  <mat-form-field class="w-full" appearance="outline">
+    <mat-label class="ml-2">{{ label() }}</mat-label>
+    <button matPrefix class="iti__selected-flag"
+            (click)="openCountryOptions();">
+      <div class="iti__flag" [ngClass]="selectedCountry.value.flagClass || ''"></div>
+      <div class="selected-dial-code ml-1">+{{ selectedCountry.value.dialCode }}</div>
+      <div class="mat-mdc-select-arrow">
+        <svg viewBox="0 0 24 24" width="24px" height="24px" focusable="false" aria-hidden="true">
+          <path d="M7 10l5 5 5-5z"></path>
+        </svg>
+      </div>
+    </button>
+    <input #phoneLabelInput [readonly]="readonly()" formControlName="label" matInput type="text"
+           [placeholder]="placeholder()"
+           [errorStateMatcher]="matcher" (keyup)="onPhoneNumberChange()" numbersOnly [maxlength]="maxLength()">
+    <mat-error>{{ phone.get('value')?.value | controlErrorMessage:errors(): phone.get('value') }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="cdk-visually-hidden" appearance="outline">
+    <input formControlName="value" matInput type="text">
+  </mat-form-field>
+</form>
+
+<ng-template cdkConnectedOverlay
+             [cdkConnectedOverlayOrigin]="trigger"
+             [cdkConnectedOverlayOpen]="isOpen"
+             (backdropClick)="isOpen = !isOpen"
+             [cdkConnectedOverlayHasBackdrop]="true"
+             cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+             (detach)="isOpen = false">
+
+  <mat-select class="cdk-visually-hidden">
+  </mat-select>
+
+  <div role="listbox" tabindex="-1"
+       class="mat-select-panel-animations-enabled mat-mdc-select-panel mdc-menu-surface mdc-menu-surface--open mat-primary">
+
+    <mat-form-field class="w-full" appearance="outline">
+      <input #searchCountryInput [formControl]="searchCountryControl" matInput placeholder="Search country">
+    </mat-form-field>
+
+    @for (country of allCountriesFiltered; track country) {
+      <mat-option [value]="country" class="w-[350px]" (onSelectionChange)="onSelectionChangeCountry($event)">
+        <div class="flex">
+          <div class="mt-1 iti__flag mr-2" [ngClass]="country.flagClass || ''"></div>
+          {{ country.name }} +{{ country.dialCode }}
+        </div>
+      </mat-option>
+    }
+  </div>
+</ng-template>
+

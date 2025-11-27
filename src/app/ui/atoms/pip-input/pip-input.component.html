@@ -1,0 +1,29 @@
+<mat-form-field class="w-full" appearance="outline">
+  <mat-label>{{ label() }}</mat-label>
+  <input [readonly]="readonly()" [id]="controlName()" [formControl]="control" matInput [type]="type()" [placeholder]="placeholder()">
+
+  @if (hintStart()) {
+    <mat-hint align="start">
+      {{ hintText() }}
+    </mat-hint>
+  }
+
+  @if (hintEnd()) {
+    <mat-hint align="end">
+      {{ hintText() }}
+    </mat-hint>
+  }
+
+  @if (suffixButton()) {
+    <pip-icon-button matSuffix (onClick)="onSuffixClick.emit()" [icon]="suffixIcon()"/>
+  }
+  @if (prefixButton()) {
+    <pip-icon-button matPrefix [icon]="prefixIcon()"/>
+  }
+  @if (clearButton() && this.control.value) {
+    <pip-icon-button matSuffix (onClick)="control.setValue('')" icon="clear"/>
+  }
+
+  <mat-error>{{ control.value | controlErrorMessage:errors():control }}</mat-error>
+
+</mat-form-field>

@@ -1,0 +1,11 @@
+@if (color() === 'primary' && matStepperNext()) {
+  <button [type]="type()" [disabled]="disabled()" matStepperNext class="w-full my-4 !h-[46px]"
+          mat-flat-button>{{ text() }}
+  </button>
+}
+
+@if (color() === 'secondary' && matStepperPrevious()) {
+  <button [type]="type()" matStepperPrevious class="w-full my-4 !h-[46px]"
+          mat-raised-button>{{ text() }}
+  </button>
+}

@@ -1,0 +1,9 @@
+<form class="bg-card flex flex-col overflow-hidden rounded-2xl p-8 pb-4 shadow" [formGroup]="testForm"
+      (ngSubmit)="signIn();">
+  <title-page title="Test"/>
+  <!--  <pip-select [options]="[{value:'1',label:'Primer valor'}]" [errors]="passwordErrors()" prefixButton-->
+  <!--              prefixIcon="home" controlName="test" label="Select a value"></pip-select>-->
+
+  <pip-autocomplete [options]="[{value:'1',label:'Primer valor'}]" [errors]="passwordErrors()" prefixButton clearButton
+                    prefixIcon="home" controlName="test" label="Select a value"/>
+</form>
